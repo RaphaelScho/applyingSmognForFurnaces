@@ -1,0 +1,18 @@
+name: smogn
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - matplotlib
+  - pandas
+  - scikit-learn
+  - seaborn
+  - xarray
+  - ipykernel
+  - pip
+  - git
+  - jupyter
+  - pip:
+      git+https://github.com/RaphaelScho/smogn.git@feature/parallel
+prefix: /home/user1/anaconda3/envs/smogn
