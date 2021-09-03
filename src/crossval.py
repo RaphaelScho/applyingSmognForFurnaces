@@ -11,7 +11,7 @@ def cross_validate(df, model_params, use_smogn, folds=10, rel_thresh=0.1, normal
     X = df.drop("ignitions", axis=1)
     y = df.ignitions
 
-    kf = KFold(n_splits=folds)
+    kf = KFold(n_splits=folds, shuffle=True, random_state=42)
     scores = []
 
     for fold, (train_index, test_index) in enumerate(kf.split(X, y), 1):
@@ -42,5 +42,7 @@ def cross_validate(df, model_params, use_smogn, folds=10, rel_thresh=0.1, normal
             model.fit(X_train, y_train)
 
         scores.append(model.score(X_test, y_test))  # R2
+        #print(np.mean(scores))
+        #print(scores)
 
     return scores
