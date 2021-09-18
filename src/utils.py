@@ -68,6 +68,7 @@ def run_smogn(file_path, parallel=True, rel_thresh=0.1, silent=False, features=N
         drop_na_row=True,  ## boolean (True or False)
         replace=False,  ## boolean (True or False)
         parallel=parallel,
+        silent=silent,
 
         ## phi relevance arguments
         # 1:0.6,2:0.8,3:0.8
