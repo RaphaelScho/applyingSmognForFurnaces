@@ -7,11 +7,20 @@ import pandas as pd
 import numpy as np
 
 
-def read_datacube(file_path, silent=False):
+def read_datacube(file_path, silent=False, select_north=True):
     if not silent:
         print('file opening...')
     # open datasets
     file1 = xr.open_dataset(file_path, decode_times=False)
+
+    if not silent:
+        print(list(file1.data_vars))
+        print(list(file1.coords))
+    if select_north:
+        file1 = file1.where(file1.lon >= 128)
+        file1 = file1.where(file1.lon <= 137)
+        file1 = file1.where(file1.lat >= -16)
+        file1 = file1.where(file1.lat <= -11.5)
 
     if not silent:
         print('file loading complete')
