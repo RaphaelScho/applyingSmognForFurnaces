@@ -7,11 +7,11 @@ from utils import run_smogn
 from config import data_path, resample_path
 
 
-def cross_validate(df, model_params, use_smogn, folds=10, rel_thresh=0.1, normalize=False, parallel=True):
+def cross_validate(df, model_params, use_smogn, folds=10, rel_thresh=0.1, normalize=False, parallel=True, shuffle=True):
     X = df.drop("ignitions", axis=1)
     y = df.ignitions
 
-    kf = KFold(n_splits=folds, shuffle=True, random_state=42)
+    kf = KFold(n_splits=folds, shuffle=shuffle, random_state=42)
     scores = []
 
     for fold, (train_index, test_index) in enumerate(kf.split(X, y), 1):
