@@ -12,9 +12,6 @@ def read_datacube(file_path, silent=False, select_north=True):
     # open datasets
     file1 = xr.open_dataset(file_path, decode_times=False)
 
-    if not silent:
-        print(list(file1.data_vars))
-        print(list(file1.coords))
     if select_north:
         file1 = file1.where(file1.lon >= 128)
         file1 = file1.where(file1.lon <= 137)
