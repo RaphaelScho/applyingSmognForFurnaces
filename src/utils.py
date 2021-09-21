@@ -4,7 +4,6 @@ import smogn
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import numpy as np
 
 
 def read_datacube(file_path, silent=False, select_north=True):
@@ -42,10 +41,6 @@ def read_datacube(file_path, silent=False, select_north=True):
     fill_list = features.columns
     for col in fill_list:
         features[col] = features[col].fillna(0)
-
-    # cast ignitions to integer
-    #features["ignitions"] = features["ignitions"].astype(int)
-    #features["ignitions"] = (features["ignitions"].values > 0).astype(np.uint8)
 
     return features
 
@@ -88,8 +83,6 @@ def run_smogn(file_path, parallel=True, rel_thresh=0.1, silent=False, features=N
         print(rf_resampled['ignitions'].astype(bool).sum(axis=0))
         print('non zeros in old data:')
         print(features['ignitions'].astype(bool).sum(axis=0))
-        # print(smogn.box_plot_stats(features_r['ignitions'])['stats'])
-        # print(smogn.box_plot_stats(rf_resampled['ignitions'])['stats'])
 
         # plot y distribution
         sns.kdeplot(features['ignitions'], label="Original")
